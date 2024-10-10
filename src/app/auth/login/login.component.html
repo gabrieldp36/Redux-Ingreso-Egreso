@@ -1,0 +1,81 @@
+<div class="container page-body-wrapper full-page-wrapper auth-page bg-black">
+    <div class="content-wrapper d-flex justify-content-center align-items-center auth auth-bg-1 theme-one">
+        <div class="div-login-form">
+            <h1 class="text-center mb-4 text-white">Login</h1>
+            <div class="auto-form-wrapper wrapper-custom-login">
+                <form action="#">
+                    <div class="form-group margin-bottom-4">
+                        <label 
+                            class="label font-size-14"
+                            [class.custom-focus-label]="focusEmail"
+                            (focus)="focusEmail=true"
+                            (blur)="focusEmail=false"
+                        >
+                            Usuario
+                        </label>
+                        <div class="input-group">
+                            <input 
+                                type="email" 
+                                class="form-control custom-control-login" 
+                                placeholder="Email"
+                                (focus)="focusEmail=true"
+                                (blur)="focusEmail=false"
+                            >
+                            <div class="input-group-append bg-transparent">
+                                <span 
+                                    class="input-group-text custom-control-login"
+                                    [class.custom-focus-login]="focusEmail"
+                                >
+                                    <i class="fa fa-check-circle color-gray"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group margin-bottom-4">
+                        <label 
+                            class="label font-size-14"
+                            [class.custom-focus-label]="focusPassword"
+                            (focus)="focusPassword=true"
+                            (blur)="focusPassword=false"
+                        >
+                            Contraseña
+                        </label>
+                        <div class="input-group">
+                            <input 
+                                type="password" 
+                                class="form-control custom-control-login" 
+                                placeholder="*********" 
+                                autocomplete="nope"
+                                (focus)="focusPassword=true"
+                                (blur)="focusPassword=false"
+                            >
+                            <div 
+                                class="input-group-append bg-transparent"
+                            >
+                                <span 
+                                    class="input-group-text custom-control-login" 
+                                    [class.custom-focus-login]="focusPassword"
+                                >
+                                    <i class="fa fa-check-circle color-gray"></i>
+                              </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-login-bg">Login</button>
+                    </div>
+
+
+                    <div class="text-block text-center">
+                        <span class="text-small font-weight-semibold">¿No estás registrado? </span>
+                        <br>
+                        <a href="" class="text-white text-small">Crear una cuenta</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+    </div>
+    <!-- content-wrapper ends -->
+</div>
+

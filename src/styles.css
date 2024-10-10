@@ -1,1 +1,100 @@
-/* You can add global styles to this file, and also import other style files */
+/**************************************** Utilidades *******************************************/
+
+.margin-bottom-4 {
+    margin-bottom: 3rem !important;
+}
+
+.bg-transparent {
+    background: transparent !important;
+}
+
+.bg-black {
+    background-color: #000000;
+}
+
+.color-gray {
+   color: #b6b6b6;
+}
+
+.font-size-14 {
+    font-size: 14px !important;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+/**************************************** Login Component *******************************************/
+
+.div-login-form {
+    flex: 1;
+    max-width: 500px;
+}
+
+.wrapper-custom-login {
+    color: #FFF;
+    padding: 4rem 5rem !important;
+    background-color: hsl(0, 0%, 100%, 0.2) !important;
+    backdrop-filter: blur(4px);
+}
+
+.btn-login-bg {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    color: white ;
+    background: linear-gradient(to right, #3671fd, #6b4db1);
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in;
+}
+
+.btn-login-bg:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.custom-focus-label {
+    color: #80bdff;
+    animation: colorLabelLogin 0.25s;
+}
+
+@keyframes colorLabelLogin {
+  0% { color: #FFF}
+  100% { color: #80bdff; }
+}
+
+.custom-control-login {
+    background: transparent !important;
+    color: white !important;
+    border-color: #FFF !important;
+    border-width: 2px !important;
+    border-radius: 0 !important;
+    transition-property: border-color;
+    transition-duration: 0.2s;
+}
+
+.custom-control-login:focus {
+    border-color: #80bdff !important;
+}
+
+.custom-focus-login {
+    border-color: #80bdff !important;
+}
+
+/**************************************** Register Component *******************************************/
+
+.registro-bg {
+    background: linear-gradient( rgb( 57 70 89 / .5 ) 0%, rgb( 57 70 89 / .5 ) 100%), url("../public/assets/images/auth/registro_2.png");
+    background-size: cover; 
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.wrapper-custom-register {
+    color: #FFF;
+    padding: 4rem 5rem !important;
+    background-color: hsl(0, 0%, 100%, 0.1) !important;
+    backdrop-filter: blur(6px);
+}
