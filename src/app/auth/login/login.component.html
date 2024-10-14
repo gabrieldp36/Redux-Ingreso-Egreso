@@ -1,10 +1,10 @@
 <div class="page-body-wrapper full-page-wrapper auth-page bg-black">
-    <div class="content-wrapper d-flex justify-content-center align-items-center auth auth-bg-1 theme-one">
+    <div class="content-wrapper d-flex justify-content-center align-items-center auth auth-bg-1 theme-one p-0">
         <div class="div-login-form">
             <h1 class="text-center mb-4 text-white">Login</h1>
             <div class="auto-form-wrapper wrapper-custom-login">
                 <form action="#">
-                    <div class="form-group margin-bottom-4">
+                    <div class="form-group margin-bottom-2">
                         <label 
                             class="label font-size-14"
                             [class.custom-focus-label]="focusEmail"
@@ -17,7 +17,7 @@
                             <input 
                                 type="email" 
                                 class="form-control custom-control-login" 
-                                placeholder="Email"
+                                placeholder="correo@gmail.com"
                                 (focus)="focusEmail=true"
                                 (blur)="focusEmail=false"
                             >
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group margin-bottom-4">
+                    <div class="form-group margin-bottom-2">
                         <label 
                             class="label font-size-14"
                             [class.custom-focus-label]="focusPassword"

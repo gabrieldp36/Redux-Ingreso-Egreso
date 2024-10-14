@@ -1,23 +1,55 @@
 <div class="page-body-wrapper full-page-wrapper auth-page bg-black">
-    <div class="content-wrapper d-flex justify-content-center align-items-center auth registro-bg theme-one">
-        <div class="div-login-form">
+    <div class="content-wrapper d-flex justify-content-center align-items-center auth registro-bg theme-one p-0">
+        <div class="div-login-form" >
             <h1 class="text-center mb-4 text-white">Registro</h1>
-            <div class="auto-form-wrapper wrapper-custom-register">
-                <form action="#">
-                    <div class="form-group margin-bottom-4">
+            <div class="auto-form-wrapper wrapper-custom-register max-height-500 scroll-y">
+                <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
+
+                    <div class="form-group margin-bottom-2">
+                        <label 
+                            class="label font-size-14"
+                            [class.custom-focus-label]="focusUsuario"
+                            (focus)="focusUsuario=true"
+                            (blur)="focusUsuario=false"
+                        >
+                            Usuario
+                        </label>
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                class="form-control custom-control-login" 
+                                placeholder="Nombre"
+                                formControlName="usuario"
+                                (focus)="focusUsuario=true"
+                                (blur)="focusUsuario=false"
+                            >
+                            <div class="input-group-append bg-transparent">
+                                <span 
+                                    class="input-group-text custom-control-login"
+                                    [class.custom-focus-login]="focusUsuario"
+                                >
+                                    <i [class]="getClassIconInput('usuario')"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('usuario')}} </span>
+                    </div>
+
+                    <div class="form-group margin-bottom-2">
                         <label 
                             class="label font-size-14"
                             [class.custom-focus-label]="focusEmail"
                             (focus)="focusEmail=true"
                             (blur)="focusEmail=false"
                         >
-                            Usuario
+                            Correo
                         </label>
                         <div class="input-group">
                             <input 
                                 type="email" 
                                 class="form-control custom-control-login" 
-                                placeholder="Email"
+                                placeholder="correo@gmail.com"
+                                formControlName="correo"
                                 (focus)="focusEmail=true"
                                 (blur)="focusEmail=false"
                             >
@@ -26,12 +58,14 @@
                                     class="input-group-text custom-control-login"
                                     [class.custom-focus-login]="focusEmail"
                                 >
-                                    <i class="fa fa-check-circle color-gray"></i>
+                                    <i [class]="getClassIconInput('correo')"></i>
                                 </span>
                             </div>
                         </div>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('correo')}} </span>
                     </div>
-                    <div class="form-group margin-bottom-4">
+
+                    <div class="form-group margin-bottom-2">
                         <label 
                             class="label font-size-14"
                             [class.custom-focus-label]="focusPassword"
@@ -46,6 +80,7 @@
                                 class="form-control custom-control-login" 
                                 placeholder="*********" 
                                 autocomplete="nope"
+                                formControlName="password"
                                 (focus)="focusPassword=true"
                                 (blur)="focusPassword=false"
                             >
@@ -56,13 +91,20 @@
                                     class="input-group-text custom-control-login" 
                                     [class.custom-focus-login]="focusPassword"
                                 >
-                                    <i class="fa fa-check-circle color-gray"></i>
+                                    <i [class]="getClassIconInput('password')"></i>
                               </span>
                             </div>
                         </div>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('password')}} </span>
                     </div>
                     <div class="form-group">
-                        <button class="btn-login-bg">Crear cuenta</button>
+                        <button 
+                            type="submit"
+                            class="btn-login-bg" 
+                            [disabled]="registroForm.invalid"
+                        >
+                            Crear cuenta
+                        </button>
                     </div>
 
 

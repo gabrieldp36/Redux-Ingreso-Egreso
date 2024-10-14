@@ -46,8 +46,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 /**************************************** Utilidades *******************************************/
 
-.margin-bottom-4 {
-    margin-bottom: 3rem !important;
+.margin-bottom-2 {
+    margin-bottom: 2rem;
 }
 
 .bg-transparent {
@@ -62,6 +62,14 @@ input[type=number]::-webkit-outer-spin-button {
    color: #b6b6b6;
 }
 
+.color-red {
+    color:  #D92626;
+}
+
+.color-green {
+    color: #69efae;
+}
+
 .font-size-14 {
     font-size: 14px !important;
 }
@@ -72,6 +80,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .max-width-300 {
     max-width: 300px;
+}
+
+.max-height-500 {
+    max-height: 540px;
 }
 
 .display-center {
@@ -89,9 +101,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .active {
-
-    background: #fafbfc;
+    background: #f1f2f3;
     color: #4a4a4a;
+}
+
+.scroll-y {
+    overflow-y: auto;
 }
 
 /**************************************** Login Component *******************************************/
@@ -123,6 +138,11 @@ input[type=number]::-webkit-outer-spin-button {
 .btn-login-bg:hover {
     opacity: 0.8;
     cursor: pointer;
+}
+
+.btn-login-bg:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
 }
 
 .custom-focus-label {
@@ -172,4 +192,12 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 4rem 5rem !important;
     background-color: hsl(0, 0%, 100%, 0.1) !important;
     backdrop-filter: blur(6px);
+}
+
+
+/**************************************** Sidebar Component *******************************************/
+
+.nav-item-hover:hover {
+    background: #f1f2f3 !important;
+    color: #4a4a4a !important;
 }
