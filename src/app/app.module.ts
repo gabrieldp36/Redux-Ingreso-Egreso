@@ -25,6 +25,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AngularFireDatabaseModule,
   ],
   providers: [
     provideFirebaseApp(() => initializeApp( environment.firebaseConfig) ),

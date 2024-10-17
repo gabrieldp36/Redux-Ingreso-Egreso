@@ -44,6 +44,16 @@ input[type=number]::-webkit-outer-spin-button {
     border-color: #495057;
 }
 
+/************************************Sweet Alert***************************************/
+
+.swal2-styled.swal2-confirm {
+    box-shadow: none !important;
+}
+  
+.swal2-timer-progress-bar {
+    background-color: #7b1fa2 !important;
+}
+  
 /**************************************** Utilidades *******************************************/
 
 .margin-bottom-2 {
@@ -178,6 +188,11 @@ input[type=number]::-webkit-outer-spin-button {
     border-color: #80bdff !important;
 }
 
+.custom-spinner-login {
+    width: 20px;
+    height: 20px;
+}
+
 /**************************************** Register Component *******************************************/
 
 .registro-bg {
@@ -194,6 +209,17 @@ input[type=number]::-webkit-outer-spin-button {
     backdrop-filter: blur(6px);
 }
 
+.icon-info {
+    font-size: 14px; 
+    top: -4px; 
+    right: -18px;
+}
+
+.custom-tooltip-gray {
+    --bs-tooltip-bg: #69efae;
+    --bs-tooltip-color: #000;
+    --bs-tooltip-opacity: 1;
+}
 
 /**************************************** Sidebar Component *******************************************/
 

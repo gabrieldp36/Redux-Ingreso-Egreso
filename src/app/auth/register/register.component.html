@@ -19,7 +19,7 @@
                                 type="text" 
                                 class="form-control custom-control-login" 
                                 placeholder="Nombre"
-                                formControlName="usuario"
+                                formControlName="nombre"
                                 (focus)="focusUsuario=true"
                                 (blur)="focusUsuario=false"
                             >
@@ -28,11 +28,11 @@
                                     class="input-group-text custom-control-login"
                                     [class.custom-focus-login]="focusUsuario"
                                 >
-                                    <i [class]="getClassIconInput('usuario')"></i>
+                                    <i [class]="getClassIconInput('nombre')"></i>
                                 </span>
                             </div>
                         </div>
-                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('usuario')}} </span>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('nombre')}} </span>
                     </div>
 
                     <div class="form-group margin-bottom-2">
@@ -67,12 +67,17 @@
 
                     <div class="form-group margin-bottom-2">
                         <label 
-                            class="label font-size-14"
+                            class="label font-size-14 position-relative"
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top" 
+                            data-bs-title="La contraseña debe contener mínimo 8 caractéres, al menos una letra mayúscula, una letra minúscula y un número."
+                            data-bs-custom-class="custom-tooltip-gray"
                             [class.custom-focus-label]="focusPassword"
                             (focus)="focusPassword=true"
                             (blur)="focusPassword=false"
                         >
                             Contraseña
+                            <i class="fa-solid fa-circle-info color-green position-absolute icon-info"></i>
                         </label>
                         <div class="input-group">
                             <input 
@@ -103,7 +108,16 @@
                             class="btn-login-bg" 
                             [disabled]="registroForm.invalid"
                         >
-                            Crear cuenta
+                            <div class="display-center gap-2">
+                                @if (cargando) {
+                                    <div class="spinner-border text-light custom-spinner-login" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                } @else {
+                                    <i class="fa-solid fa-plus"></i>
+                                    <span class="fw-bold">Crear cuenta</span>
+                                }
+                            </div>
                         </button>
                     </div>
 

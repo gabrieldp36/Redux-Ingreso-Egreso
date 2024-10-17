@@ -1,14 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { SwalertService } from '../../services/swalert.service';
+import { TooltipService } from '../../services/tooltip.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   // Banderas booleanas.
+  public cargando: boolean = false;
   public focusUsuario: boolean = false;
   public focusEmail: boolean = false;
   public focusPassword: boolean = false;
@@ -17,12 +22,22 @@ export class RegisterComponent {
   public registroForm: FormGroup;
   public passwordPatron: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private authService: AuthService,
+    private swAlert: SwalertService,
+    private tooltipService: TooltipService,
+  ) {
     this.registroForm = this.fb.group({
-      usuario: [ '', Validators.required ],
+      nombre: [ '', Validators.required ],
       correo: [ '', [ Validators.required, Validators.email ] ],
       password: [ '', [Validators.required, Validators.pattern(this.passwordPatron)] ]
     });
+  };
+
+  public ngOnInit(): void {
+    this.tooltipService.tooltipInit();
   };
 
   public getClassIconInput(control: string): string {
@@ -49,6 +64,18 @@ export class RegisterComponent {
   };
 
   public crearUsuario(): void {
-    console.log(this.registroForm.value)
+    // Creación del usuario en Firebase.
+    this.cargando = true;
+    this.authService.crearUsuario( { ...this.registroForm.value } )
+    .then( usuario => {
+      this.cargando = false;
+      this.router.navigate(['dashboard']);
+      this.swAlert.crearToast('¡Usuario creado!', 'success');
+    })
+    .catch( error => {
+      this.cargando = false;
+      console.log(error) 
+      this.swAlert.dialogoSimple('error', '¡Ha ocurrido un error!', 'No se ha podido crear al usuario.');
+    });
   };
 }

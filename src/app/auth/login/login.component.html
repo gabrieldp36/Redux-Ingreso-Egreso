@@ -3,7 +3,7 @@
         <div class="div-login-form">
             <h1 class="text-center mb-4 text-white">Login</h1>
             <div class="auto-form-wrapper wrapper-custom-login">
-                <form action="#">
+                <form [formGroup]="loginForm" (ngSubmit)="loguearUsuario()">
                     <div class="form-group margin-bottom-2">
                         <label 
                             class="label font-size-14"
@@ -16,6 +16,7 @@
                         <div class="input-group">
                             <input 
                                 type="email" 
+                                formControlName="correo"
                                 class="form-control custom-control-login" 
                                 placeholder="correo@gmail.com"
                                 (focus)="focusEmail=true"
@@ -26,10 +27,11 @@
                                     class="input-group-text custom-control-login"
                                     [class.custom-focus-login]="focusEmail"
                                 >
-                                    <i class="fa fa-check-circle color-gray"></i>
+                                    <i [class]="getClassIconInput('correo')"></i>
                                 </span>
                             </div>
                         </div>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('correo')}} </span>
                     </div>
                     <div class="form-group margin-bottom-2">
                         <label 
@@ -43,6 +45,7 @@
                         <div class="input-group">
                             <input 
                                 type="password" 
+                                formControlName="password"
                                 class="form-control custom-control-login" 
                                 placeholder="*********" 
                                 autocomplete="nope"
@@ -56,13 +59,29 @@
                                     class="input-group-text custom-control-login" 
                                     [class.custom-focus-login]="focusPassword"
                                 >
-                                    <i class="fa fa-check-circle color-gray"></i>
+                                    <i [class]="getClassIconInput('password')"></i>
                               </span>
                             </div>
                         </div>
+                        <span class="font-size-14 color-red fw-bold"> {{getErrorMsg('password')}} </span>
                     </div>
                     <div class="form-group">
-                        <button class="btn-login-bg">Login</button>
+                        <button 
+                            type="submit" 
+                            class="btn-login-bg" 
+                            [disabled]="loginForm.invalid"
+                        >
+                            <div class="display-center gap-2">
+                                @if (cargando) {
+                                    <div class="spinner-border text-light custom-spinner-login" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                } @else {
+                                    <i class="fa-solid fa-arrow-right-to-bracket text-light"></i>
+                                    <span class="fw-bold">Login</span>
+                                }
+                            </div>
+                        </button>
                     </div>
 
 
@@ -76,6 +95,5 @@
         </div>
     
     </div>
-    <!-- content-wrapper ends -->
 </div>
 
