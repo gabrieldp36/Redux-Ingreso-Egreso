@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   // Suscripciones.
   public uiSubscription!: Subscription;
+  public authSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -77,9 +78,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.store.dispatch(actions.isLoading());
     this.authService.crearUsuario( { ...this.registroForm.value } )
     .then( usuario => {
-      this.store.dispatch(actions.stopLoading());
-      this.router.navigate(['dashboard']);
-      this.swAlert.crearToast('¡Usuario creado!', 'success');
+      this.authSubscription = this.store.select('auth').subscribe( usuarioAuth => { 
+        if(usuarioAuth.usuario) {
+          this.store.dispatch(actions.stopLoading());
+          this.router.navigate(['dashboard']);
+          this.swAlert.crearToast('¡Usuario creado!', 'success');
+        };
+      });
     })
     .catch( error => {
       this.store.dispatch(actions.stopLoading());
@@ -90,5 +95,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.uiSubscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   };
 }

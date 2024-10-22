@@ -7,6 +7,7 @@ import { AuthService } from '../../services/auth.service';
 import { SwalertService } from '../../services/swalert.service';
 import { AppState } from '../../app.reducer';
 import * as actions from '../../shared/ui.actions';
+import { Usuario } from '../../models/usuario.model';
 
 @Component({
   selector: 'app-login',
@@ -23,8 +24,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   // Formularios.
   public loginForm: FormGroup;
 
+  // Usuario Autenticado.
+  public usuarioAutenticado: Usuario|null = null;
+
   // Suscripciones.
   public uiSubscription!: Subscription;
+  public authSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -69,10 +74,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     // Logueo del usuario con Firebase.
     this.store.dispatch(actions.isLoading());
     this.authService.loguearUsuario( { ...this.loginForm.value } )
-    .then( credenciales => {
-      this.store.dispatch(actions.stopLoading());
-      this.router.navigate(['dashboard']);
-      this.swAlert.crearToast('¡Login exitoso!', 'success');
+    .then( (_) => {
+      this.authSubscription = this.store.select('auth').subscribe( usuarioAuth => { 
+        if(usuarioAuth.usuario) {
+          this.store.dispatch(actions.stopLoading());
+          this.router.navigate(['dashboard']);
+          this.swAlert.crearToast('¡Login exitoso!', 'success');
+        };
+      });
     })
     .catch( error => {
       this.store.dispatch(actions.stopLoading());
@@ -83,5 +92,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.uiSubscription.unsubscribe();
+    this.authSubscription.unsubscribe();
   };
 }

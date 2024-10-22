@@ -9,7 +9,9 @@
                     </div>
 
                     <div class="text-wrapper">
-                        <p class="profile-name">Ricardo Sánchez</p>
+                        @if (nombreUsuario) {
+                            <p class="profile-name">{{nombreUsuario | titlecase}}</p>
+                        }
                         <div>
                             <small class="designation text-muted">Gerente</small>
                         </div>

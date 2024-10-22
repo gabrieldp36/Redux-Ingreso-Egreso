@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { SwalertService } from '../../services/swalert.service';
@@ -9,6 +9,8 @@ import { SwalertService } from '../../services/swalert.service';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+
+  @Input() nombreUsuario: string|undefined = undefined;
 
   public constructor(
     private router: Router,
