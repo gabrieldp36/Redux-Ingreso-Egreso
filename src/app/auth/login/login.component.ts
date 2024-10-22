@@ -1,35 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../services/auth.service';
 import { SwalertService } from '../../services/swalert.service';
+import { AppState } from '../../app.reducer';
+import * as actions from '../../shared/ui.actions';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
 
   // Banderas booleanas.
-  public cargando: boolean = false;
   public focusEmail: boolean = false;
   public focusPassword: boolean = false;
+  public cargando!: boolean;
 
   // Formularios.
   public loginForm: FormGroup;
 
+  // Suscripciones.
+  public uiSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
     private swAlert: SwalertService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {
     this.loginForm = this.fb.group({
-      correo: [ '', [ Validators.required, Validators.email ] ],
-      password: [ '', [Validators.required] ]
+      correo: [ 'test1@test.com', [ Validators.required, Validators.email ] ],
+      password: [ 'Test123456', [Validators.required] ]
     });
+    this.loginForm.markAllAsTouched();
+  };
+
+  public ngOnInit(): void {
+   this.uiSubscription =  this.store.select('ui').subscribe( state => this.cargando = state.isLoading );
   };
 
   public getClassIconInput(control: string): string {
@@ -55,17 +67,21 @@ export class LoginComponent {
 
   public loguearUsuario(): void {
     // Logueo del usuario con Firebase.
-    this.cargando = true;
+    this.store.dispatch(actions.isLoading());
     this.authService.loguearUsuario( { ...this.loginForm.value } )
     .then( credenciales => {
-      this.cargando = false;
+      this.store.dispatch(actions.stopLoading());
       this.router.navigate(['dashboard']);
       this.swAlert.crearToast('¡Login exitoso!', 'success');
     })
     .catch( error => {
-      this.cargando = false;
+      this.store.dispatch(actions.stopLoading());
       console.log(error);
       this.swAlert.dialogoSimple('error', '¡Ha ocurrido un error!', 'Correo o password incorrecto.');
     });
-  }; 
+  };
+
+  public ngOnDestroy(): void {
+    this.uiSubscription.unsubscribe();
+  };
 }

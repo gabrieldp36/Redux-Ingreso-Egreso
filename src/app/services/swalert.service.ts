@@ -46,7 +46,8 @@ export class SwalertService {
       allowOutsideClick: false,
       allowEscapeKey: false,
       allowEnterKey: false,
-      didOpen: () => {
+      showConfirmButton: false,
+      willOpen: () => {
         Swal.showLoading();
       },
     });

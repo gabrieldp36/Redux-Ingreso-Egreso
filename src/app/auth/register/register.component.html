@@ -106,7 +106,7 @@
                         <button 
                             type="submit"
                             class="btn-login-bg" 
-                            [disabled]="registroForm.invalid"
+                            [disabled]="registroForm.invalid || cargando"
                         >
                             <div class="display-center gap-2">
                                 @if (cargando) {

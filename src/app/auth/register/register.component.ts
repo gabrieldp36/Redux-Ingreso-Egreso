@@ -1,26 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { AuthService } from '../../services/auth.service';
 import { SwalertService } from '../../services/swalert.service';
 import { TooltipService } from '../../services/tooltip.service';
+import { AppState } from '../../app.reducer';
+import * as actions from '../../shared/ui.actions';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   // Banderas booleanas.
-  public cargando: boolean = false;
   public focusUsuario: boolean = false;
   public focusEmail: boolean = false;
   public focusPassword: boolean = false;
+  public cargando!: boolean;
 
   // Formularios.
   public registroForm: FormGroup;
   public passwordPatron: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+
+  // Suscripciones.
+  public uiSubscription!: Subscription;
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +35,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private swAlert: SwalertService,
     private tooltipService: TooltipService,
+    private store: Store<AppState>
   ) {
     this.registroForm = this.fb.group({
       nombre: [ '', Validators.required ],
@@ -37,6 +45,7 @@ export class RegisterComponent implements OnInit {
   };
 
   public ngOnInit(): void {
+    this.uiSubscription =  this.store.select('ui').subscribe( state => this.cargando = state.isLoading );
     this.tooltipService.tooltipInit();
   };
 
@@ -65,17 +74,21 @@ export class RegisterComponent implements OnInit {
 
   public crearUsuario(): void {
     // Creación del usuario en Firebase.
-    this.cargando = true;
+    this.store.dispatch(actions.isLoading());
     this.authService.crearUsuario( { ...this.registroForm.value } )
     .then( usuario => {
-      this.cargando = false;
+      this.store.dispatch(actions.stopLoading());
       this.router.navigate(['dashboard']);
       this.swAlert.crearToast('¡Usuario creado!', 'success');
     })
     .catch( error => {
-      this.cargando = false;
+      this.store.dispatch(actions.stopLoading());
       console.log(error) 
       this.swAlert.dialogoSimple('error', '¡Ha ocurrido un error!', 'No se ha podido crear al usuario.');
     });
+  };
+
+  public ngOnDestroy(): void {
+    this.uiSubscription.unsubscribe();
   };
 }

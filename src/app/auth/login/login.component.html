@@ -69,7 +69,7 @@
                         <button 
                             type="submit" 
                             class="btn-login-bg" 
-                            [disabled]="loginForm.invalid"
+                            [disabled]="loginForm.invalid || cargando"
                         >
                             <div class="display-center gap-2">
                                 @if (cargando) {
