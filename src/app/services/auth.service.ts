@@ -14,13 +14,19 @@ import { UsuarioInterface } from '../interfaces/usuario.interface';
 })
 export class AuthService {
 
+  private usuarioAuth!: User|null;
+
   public constructor(
     private auth: Auth,
     private firestore: Firestore,
     private store: Store<AppState>
   ) {};
 
-  public initAuthListener() {
+  get getUsuarioAuth(): User|null {
+    return this.usuarioAuth;
+  };
+
+  public initAuthListener(): void {
 
     // Este listener se encarga de avisarnos cuando ocurra un cambio con la autenticación.
     // Informa cuando se autentica a un usuario (login) y cuando se cierra cesión.
@@ -28,7 +34,7 @@ export class AuthService {
       
       // Si el usuario existe, implementamos una query para recuperar la data y así poder agregarla a nuestro auth state.
       if( usuario ) {
-
+        this.usuarioAuth = usuario;
         const userRef = collection( this.firestore, 'usuario' );
         const queryResult = query( userRef, where( 'uid', '==', usuario.uid) );
         const querySnapshot = await getDocs(queryResult) ;
@@ -36,7 +42,8 @@ export class AuthService {
         this.store.dispatch( authActions.setUser( { user: Usuario.fromFirebase(data) } ) );
 
       } else {
-
+        // Cuando no existe usuario o se produce el cierre de sesión.
+        this.usuarioAuth = null
         this.store.dispatch( authActions.unsetUser() );
       };
     });
