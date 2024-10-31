@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, doc, setDoc} from '@angular/fire/firestore';
+import { Firestore, QueryDocumentSnapshot, collection, collectionSnapshots, doc, setDoc} from '@angular/fire/firestore';
+import { filter, map, Observable, Subscription } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IngresoEgreso } from '../models/ingreso-egreso.model';
 
@@ -12,6 +13,20 @@ export class IngresoEgresoService {
     private firestore: Firestore,
     private authService: AuthService,
   ) {};
+
+  public initIngresoEgresoListener(uid: string): Observable<IngresoEgreso[]> {
+
+    return collectionSnapshots (
+      collection(this.firestore, `${uid}/ingreso-egreso/items`)
+    )
+    .pipe(
+      map( ( items: QueryDocumentSnapshot[] ) => 
+          items.map( item => IngresoEgreso.fromFirebase( { ...item.data(), uid: `${item.id}` } )
+        ),
+      ),
+      filter( ( items: IngresoEgreso[] ) =>  items.length !== 0 )
+    )
+  };
 
   public crearIngresoEgreso(ingresoEgreso: IngresoEgreso) {
 
@@ -30,7 +45,7 @@ export class IngresoEgresoService {
       Como comentamos el uid del modelo no es necesario pasarlo explicitamente, es decir, si fuera parte del modelo, debemos enviar { ...ingresoEgreso, uid }, es decir
       setDoc(documentRef, { ...ingresoEgreso, uid })
     */
-
+   
     return setDoc( documentRef, { ...ingresoEgreso } );
   };
 }

@@ -74,7 +74,7 @@ export class IngresoEgresoComponent implements OnDestroy {
 
     // Guardamos el ingreso / egreso.
     const { descripcion, monto, tipo } = this.ingresoEgresoForm.value
-    const ingresoEgreso = new IngresoEgreso(descripcion, monto, tipo);
+    const { uid, ...ingresoEgreso } = new IngresoEgreso(descripcion, monto, tipo);
     
     // Si la inserción se realiza con éxito, avisamos mendiante un alert.
     this.ingresoEgresoService.crearIngresoEgreso(ingresoEgreso)
@@ -96,6 +96,6 @@ export class IngresoEgresoComponent implements OnDestroy {
   };
 
   public ngOnDestroy(): void {
-    this.uiSubscription.unsubscribe();
+    this.uiSubscription?.unsubscribe();
   };
 }
