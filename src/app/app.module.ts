@@ -1,6 +1,5 @@
 // Módulos.
-
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +13,13 @@ import { appReducers } from './app.reducer';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+
+// Cambiar el Locale de la app.
+import localesAR from '@angular/common/locales/es-AR';
+registerLocaleData(localesAR);
+
+// Pipes.
+import { OrdenIngresoEgresoPipe } from './pipes/orden-ingreso-egreso.pipe';
 
 // Componentes.
 import { AppComponent } from './app.component';
@@ -31,7 +37,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-
+import { registerLocaleData } from '@angular/common';
 
 @NgModule({
 
@@ -45,7 +51,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    OrdenIngresoEgresoPipe
   ],
 
   imports: [
@@ -67,7 +74,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
   providers: [
     provideFirebaseApp(() => initializeApp( environment.firebaseConfig) ),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    { provide: LOCALE_ID, useValue: 'es-AR' }
   ],
   
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Firestore, QueryDocumentSnapshot, collection, collectionSnapshots, doc, setDoc} from '@angular/fire/firestore';
-import { filter, map, Observable, Subscription } from 'rxjs';
+import { Firestore, QueryDocumentSnapshot, collection, collectionSnapshots, deleteDoc, doc, setDoc} from '@angular/fire/firestore';
+import { filter, map, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IngresoEgreso } from '../models/ingreso-egreso.model';
 
@@ -28,7 +28,7 @@ export class IngresoEgresoService {
     )
   };
 
-  public crearIngresoEgreso(ingresoEgreso: IngresoEgreso) {
+  public crearIngresoEgreso(ingresoEgreso: IngresoEgreso): Promise<void> {
 
     const uid = this.authService.getUsuarioAuth?.uid;
     
@@ -48,4 +48,12 @@ export class IngresoEgresoService {
    
     return setDoc( documentRef, { ...ingresoEgreso } );
   };
+
+  public borrarIngresoEgreso(uidItem:string): Promise<void> {
+    const uidUsuario = this.authService.getUsuarioAuth?.uid;
+    return deleteDoc(
+      doc( this.firestore, `${uidUsuario}/ingreso-egreso/items/${uidItem}` ),
+    );
+  };
+
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import Swal, { SweetAlertIcon } from 'sweetalert2';
+import Swal, { SweetAlertIcon, SweetAlertPosition } from 'sweetalert2';
 
 declare var bootstrap: any;
 
@@ -17,6 +17,36 @@ export class SwalertService {
       text,
       confirmButtonColor: '#7b1fa2',
       returnFocus: false,
+    });
+  };
+
+  public crearDialogoConfirmacion (
+    title: string, 
+    text: string, 
+    position: SweetAlertPosition = 'center', 
+    icon: SweetAlertIcon = 'warning', 
+    color?: string, 
+    txtBtnConfirm?: string,
+    txtBtnCancel?: string,
+    ): Promise<any> {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass   : {
+        confirmButton   : 'btn btn-success',
+        cancelButton    : 'btn btn-danger'
+      },
+      buttonsStyling: false,
+    })
+    return swalWithBootstrapButtons
+    .fire({
+      position          : position,
+      title             : title,
+      text              : text,
+      icon              : icon,
+      color             : color,
+      showCancelButton  : true,
+      confirmButtonText : (txtBtnConfirm) ? txtBtnConfirm : 'Continuar',
+      cancelButtonText  : (txtBtnCancel) ? txtBtnCancel : 'Cancelar',
+      reverseButtons    : true,
     });
   };
 

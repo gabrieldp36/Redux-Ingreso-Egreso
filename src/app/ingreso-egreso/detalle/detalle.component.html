@@ -4,28 +4,60 @@
           <div class="card-body">
             <h4 class="card-title">Detalle de ingreso egreso</h4>
 
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Descripción</th>
-                  <th>Monto</th>
-                  <th>Tipo</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
-                </tr>
-              </tbody>
-
-            </table>
-
-
+            <div class="table-responsive">
+              <table class="table table-hover mt-4">
+                <thead>
+                  <tr class="text-center">
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+  
+                <tbody>
+                  @for ( ingresoEgreso of ingresosEgresos | ordenIngresoEgreso; track ingresoEgreso.uid ) {
+                    <tr class="text-center">
+  
+                      <td class="p-4"> {{ ingresoEgreso.descripcion }} </td>
+  
+                      <td> 
+                        <span 
+                          [class.text-success]="ingresoEgreso.tipo === 'ingreso'" 
+                          [class.color-red]="ingresoEgreso.tipo === 'egreso'"
+                        >
+                          {{ ingresoEgreso.monto | currency: 'symbol': '$' }}
+                        </span>
+                      </td>
+  
+                      <td> 
+                        <span 
+                          class="badge text-bg-success font-size-12"
+                          [class.text-bg-danger]="ingresoEgreso.tipo === 'egreso'"
+                          
+                        >
+                          {{ ingresoEgreso.tipo | titlecase }}
+                        </span>
+                      </td>
+  
+                      <td>
+                        <button 
+                          class="btn btn-danger btn-sm"
+                          (click)="borrar(ingresoEgreso)"
+                        >
+                          @if (cargando && ingresoEgresoSeleccionado === ingresoEgreso.uid) {
+                            <i class="fa fa-spin fa-sync"></i>
+                          } @else {
+                            <i class="fa fa-trash"></i>
+                          }
+                          Borrar
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
     </div>

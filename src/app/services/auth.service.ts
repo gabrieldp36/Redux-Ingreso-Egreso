@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducer';
 import * as authActions from '../auth/auth.actions';
+import * as ingresoEgresoActions from '../ingreso-egreso/ingreso-egreso.actions';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioInterface } from '../interfaces/usuario.interface';
 
@@ -45,6 +46,7 @@ export class AuthService {
         // Cuando no existe usuario o se produce el cierre de sesión.
         this.usuarioAuth = null
         this.store.dispatch( authActions.unsetUser() );
+        this.store.dispatch( ingresoEgresoActions.unsetItems() );
       };
     });
   };
