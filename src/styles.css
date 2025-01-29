@@ -2,6 +2,16 @@
 
 html {
     box-sizing: border-box;
+    overflow: auto;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
 }
 
 *, *:before, *:after {
@@ -47,7 +57,7 @@ input[type=number]::-webkit-outer-spin-button {
 /************************************Sweet Alert***************************************/
 
 .swal2-styled.swal2-confirm {
-    box-shadow: none !important;
+    box-shadow: none !important; 
 }
   
 .swal2-timer-progress-bar {
@@ -82,7 +92,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .color-red {
-    color:  #D92626;
+    color:  #D92626 !important;
 }
 
 .color-green {
@@ -99,6 +109,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .font-size-14 {
     font-size: 14px !important;
+}
+
+.bold {
+    font-weight: 700;
 }
 
 .pointer {
@@ -145,11 +159,26 @@ input[type=number]::-webkit-outer-spin-button {
 
 /**************************************** Sidebar Component *******************************************/
 
+.sidebar-custom {
+    position: sticky; 
+    top: 63px;
+}
+
 .nav-item-hover:hover {
     background: #f1f2f3 !important;
     color: #4a4a4a !important;
 }
 
+.nav-item-sesion-hover:hover {
+    background-color: transparent !important;
+    opacity: .8;
+}
+
+/**************************************** Sidebar Component *******************************************/
+
+.nav-bar-custom {
+    position: sticky !important;
+}
 
 /**************************************** Login Component *******************************************/
 
@@ -262,4 +291,12 @@ input[type=number]::-webkit-outer-spin-button {
 .custom-spinner-form {
     width: 20px;
     height: 20px;
+}
+
+/**************************************** Estadística Component *******************************************/
+
+.custom-spinner-cards { 
+    width: 20px;
+    height: 20px;
+    color: #7b1fa2;
 }
