@@ -20,15 +20,12 @@ export class SidebarComponent {
 
   // Cierre de sesión del usuario con Firebase.
   public logout(): void {
-    // this.swalert.crearLoading('¡Cerrando sesión!');
-    this.authService.cerrarSesion()
-    .then( () => {
-      // this.swalert.cerrarAlert();
-      this.router.navigate(['/login']);
-    })
-    .catch( ()=> {
-      // this.swalert.cerrarAlert();
-      this.swalert.dialogoSimple('error', 'Ha ocurrido un error', 'No se ha podido cerrar la sesión. Consulte con el administrador.');
+    this.swalert.crearDialogoConfirmacion('Cerrar sesión', '¿Confirmás la acción?', 'center', 'question')
+    .then((result: any) => {
+      if (result.isConfirmed) {
+        this.authService.cerrarSesion()
+        this.router.navigate(['/login']);
+      };
     });
   };
 }
