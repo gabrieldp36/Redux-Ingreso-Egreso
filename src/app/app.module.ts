@@ -14,6 +14,9 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
+// Ng2Chart
+import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
+
 // Cambiar el Locale de la app.
 import localesAR from '@angular/common/locales/es-AR';
 registerLocaleData(localesAR);
@@ -69,13 +72,15 @@ import { registerLocaleData } from '@angular/common';
       traceLimit: 75, // maximum stack trace frames to be stored (in case trace option was provided as true)
       connectInZone: true // If set to true, the connection is established within the Angular zone
     }),
+    BaseChartDirective
   ],
 
   providers: [
     provideFirebaseApp(() => initializeApp( environment.firebaseConfig) ),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    { provide: LOCALE_ID, useValue: 'es-AR' }
+    { provide: LOCALE_ID, useValue: 'es-AR' },
+    provideCharts(withDefaultRegisterables()),
   ],
   
   bootstrap: [AppComponent]
