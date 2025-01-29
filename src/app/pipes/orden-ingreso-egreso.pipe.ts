@@ -7,7 +7,6 @@ import { IngresoEgreso } from '../models/ingreso-egreso.model';
 export class OrdenIngresoEgresoPipe implements PipeTransform {
 
   transform( items: IngresoEgreso[] ): IngresoEgreso[]  {
-    console.log(items.slice().sort(this.compareIngresosEgresos))
     return items.slice().sort(this.compareIngresosEgresos);
   };
 
