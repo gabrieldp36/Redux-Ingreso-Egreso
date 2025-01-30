@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Firestore, QueryDocumentSnapshot, collection, collectionSnapshots, deleteDoc, doc, setDoc} from '@angular/fire/firestore';
-import { filter, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { IngresoEgreso } from '../models/ingreso-egreso.model';
 
@@ -24,7 +24,6 @@ export class IngresoEgresoService {
           items.map( item => IngresoEgreso.fromFirebase( { ...item.data(), uid: `${item.id}` } )
         ),
       ),
-      filter( ( items: IngresoEgreso[] ) =>  items.length !== 0 )
     )
   };
 

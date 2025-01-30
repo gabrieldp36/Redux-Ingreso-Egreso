@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.authSubscription = this.store.select('auth').subscribe( usuarioAuth => { 
         if(usuarioAuth.usuario) {
           this.store.dispatch(actions.stopLoading());
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/home/dashboard']);
           this.swAlert.crearToast('¡Login exitoso!', 'success');
         };
       });

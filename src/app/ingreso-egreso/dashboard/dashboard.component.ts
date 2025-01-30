@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { ChartData, ChartType } from 'chart.js';
 import { Subscription } from 'rxjs';
-import { AppState } from '../../app.reducer';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
+import { AppStateWithIngreso } from '../ingreso-egreso.reducer';
 
 @Component({
-  selector: 'app-estadistica',
-  templateUrl: './estadistica.component.html',
-  styleUrl: './estadistica.component.css'
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class EstadisticaComponent {
+export class DashboardComponent implements OnInit, OnDestroy {
+
   // Propiedades.
   public ingresos!: number;
   public egresos!: number
@@ -32,7 +33,7 @@ export class EstadisticaComponent {
   public doughnutChartType: ChartType = 'doughnut';
 
   // Constructor.
-  public constructor( private store: Store<AppState>) {};
+  public constructor( private store: Store<AppStateWithIngreso>) {};
 
   // Hooks.
   public ngOnInit(): void {

@@ -1,9 +1,9 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, CanMatchFn, Router, UrlTree } from '@angular/router';
 import { AuthService } from './auth.service';
-import { tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
+export const estaAutenticado = (): Observable<boolean | UrlTree> => {
 
   // Injección de dependencias.
   const authService = inject(AuthService);
@@ -18,3 +18,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     }),
   );
 };
+
+export const canActivate: CanActivateFn = estaAutenticado;
+export const canMatch: CanMatchFn = estaAutenticado;
+

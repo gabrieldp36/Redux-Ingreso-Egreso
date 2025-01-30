@@ -24,7 +24,7 @@ export class SidebarComponent {
     .then((result: any) => {
       if (result.isConfirmed) {
         this.authService.cerrarSesion()
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       };
     });
   };

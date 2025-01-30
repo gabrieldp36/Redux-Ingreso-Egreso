@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   // Formularios.
   public registroForm: FormGroup;
   public passwordPatron: RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+  public emailPatron: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{1,3})+$/;
 
   // Suscripciones.
   public uiSubscription!: Subscription;
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   ) {
     this.registroForm = this.fb.group({
       nombre: [ '', Validators.required ],
-      correo: [ '', [ Validators.required, Validators.email ] ],
+      correo: [ '', [ Validators.required, Validators.pattern(this.emailPatron) ] ],
       password: [ '', [Validators.required, Validators.pattern(this.passwordPatron)] ]
     });
   };
@@ -64,9 +65,9 @@ export class RegisterComponent implements OnInit, OnDestroy {
     if(this.registroForm.get(control)?.touched) {
       if( this.registroForm.get(control)?.getError('required') ) {
         return 'El campo es obligatorio';
-      } else if( this.registroForm.get(control)?.getError('email') ) {
+      } else if( this.registroForm.get(control)?.getError('pattern') && control === 'correo') {
         return 'Ingrese un correo válido';
-      } else if( this.registroForm.get(control)?.getError('pattern') ) {
+      } else if( this.registroForm.get(control)?.getError('pattern') && control === 'password') {
         return 'La contraseña debe contener mínimo 8 caractéres, al menos una letra mayúscula, una letra minúscula y un número.';
       };
     };
@@ -81,7 +82,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       this.authSubscription = this.store.select('auth').subscribe( usuarioAuth => { 
         if(usuarioAuth.usuario) {
           this.store.dispatch(actions.stopLoading());
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/home/dashboard']);
           this.swAlert.crearToast('¡Usuario creado!', 'success');
         };
       });

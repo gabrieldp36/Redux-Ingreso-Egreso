@@ -1,17 +1,17 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
-import { IngresoEgresoService } from '../services/ingreso-egreso.service';
-import { Usuario } from '../models/usuario.model';
-import { AppState } from '../app.reducer';
-import * as actions from '../ingreso-egreso/ingreso-egreso.actions'
+import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
+import { Usuario } from '../../models/usuario.model';
+import { AppState } from '../../app.reducer';
+import * as actions from '../ingreso-egreso.actions'
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
 
   public usuarioAutenticado: Usuario|null = null;
   public authSubscription!: Subscription;
