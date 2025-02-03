@@ -11,7 +11,7 @@ Esta aplicación fue desarrollada con la finalidad de poner en práctica los con
 
 Para el desarrollo de la aplicación se han utilizado tecnologías tales cómo: @ngrx/store, @ngrx/store-devtools, ng2-charts, sweetalert2, bootstrap, entre otras.
 
-Pueden visitar la App haciendo click en el siguiente link: [httpsingresos-egresos-redux.netlify.app](https://ingresos-egresos-redux.netlify.app/)
+Pueden visitar la App haciendo click en el siguiente link: [https://ingresos-egresos-redux.netlify.app](https://ingresos-egresos-redux.netlify.app/)
 
 ### Notas:
 
