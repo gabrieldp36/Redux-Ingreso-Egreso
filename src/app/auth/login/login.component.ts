@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AuthService } from '../../services/auth.service';
 import { SwalertService } from '../../services/swalert.service';
-import { AppState } from '../../app.reducer';
-import * as actions from '../../shared/ui.actions';
+import { AppState } from '../../store/app.reducer';
+import * as actions from '../../store/actions/ui.actions';
 import { Usuario } from '../../models/usuario.model';
 
 @Component({

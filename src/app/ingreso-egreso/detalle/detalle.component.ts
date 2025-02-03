@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
 import { SwalertService } from '../../services/swalert.service';
-import * as uiActions from '../../shared/ui.actions';
-import { AppStateWithIngreso } from '../ingreso-egreso.reducer';
+import * as uiActions from '../../store/actions/ui.actions';
+import { AppStateWithIngreso } from '../../store/reducers/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-detalle',

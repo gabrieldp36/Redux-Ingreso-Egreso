@@ -5,8 +5,8 @@ import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
-import * as actions from '../../shared/ui.actions';
-import { AppState } from '../../app.reducer';
+import * as actions from '../../store/actions/ui.actions';
+import { AppState } from '../../store/app.reducer';
 import { SwalertService } from '../../services/swalert.service';
 
 type Status = 'valid' | 'invalid';

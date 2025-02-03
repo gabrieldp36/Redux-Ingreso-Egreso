@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ChartData, ChartType } from 'chart.js';
 import { Subscription } from 'rxjs';
 import { IngresoEgreso } from '../../models/ingreso-egreso.model';
-import { AppStateWithIngreso } from '../ingreso-egreso.reducer';
+import { AppStateWithIngreso } from '../../store/reducers/ingreso-egreso.reducer';
 
 @Component({
   selector: 'app-dashboard',

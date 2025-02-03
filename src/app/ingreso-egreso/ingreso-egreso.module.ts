@@ -17,8 +17,8 @@ import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.componen
 import { BaseChartDirective, provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 // Pipes.
-import { OrdenIngresoEgresoPipe } from '../pipes/orden-ingreso-egreso.pipe';
-import { ingresoEgresoReducer } from './ingreso-egreso.reducer';
+import { OrdenIngresoEgresoPipe } from './pipes/orden-ingreso-egreso.pipe';
+import { ingresoEgresoReducer } from '../store/reducers/ingreso-egreso.reducer';
 
 @NgModule({
   declarations: [

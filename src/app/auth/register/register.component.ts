@@ -6,8 +6,8 @@ import { Store } from '@ngrx/store';
 import { AuthService } from '../../services/auth.service';
 import { SwalertService } from '../../services/swalert.service';
 import { TooltipService } from '../../services/tooltip.service';
-import { AppState } from '../../app.reducer';
-import * as actions from '../../shared/ui.actions';
+import { AppState } from '../../store/app.reducer';
+import * as actions from '../../store/actions/ui.actions';
 
 @Component({
   selector: 'app-register',

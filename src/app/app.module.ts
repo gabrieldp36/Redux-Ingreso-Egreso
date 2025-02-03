@@ -7,7 +7,7 @@ import { SharedModule } from './shared/shared.module';
 // NgRx
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { appReducers } from './app.reducer';
+import { appReducers } from './store/app.reducer';
 
 // Firebase.
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';

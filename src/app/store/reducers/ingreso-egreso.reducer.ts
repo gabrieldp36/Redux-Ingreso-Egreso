@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import * as actions from './ingreso-egreso.actions';
-import { IngresoEgreso } from '../models/ingreso-egreso.model';
+import * as actions from '../actions/ingreso-egreso.actions';
+import { IngresoEgreso } from '../../models/ingreso-egreso.model';
 import { AppState } from '../app.reducer';
 
 export interface State {

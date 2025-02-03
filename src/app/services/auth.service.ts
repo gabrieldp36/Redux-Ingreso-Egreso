@@ -3,9 +3,9 @@ import {Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, UserCr
 import { Firestore, collection, addDoc, where, query, getDocs} from '@angular/fire/firestore';
 import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from '../app.reducer';
-import * as authActions from '../auth/auth.actions';
-import * as ingresoEgresoActions from '../ingreso-egreso/ingreso-egreso.actions';
+import { AppState } from '../store/app.reducer';
+import * as authActions from '../store/actions/auth.actions';
+import * as ingresoEgresoActions from '../store/actions/ingreso-egreso.actions';
 import { Usuario } from '../models/usuario.model';
 import { UsuarioInterface } from '../interfaces/usuario.interface';
 

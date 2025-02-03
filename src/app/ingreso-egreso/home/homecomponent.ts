@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { filter, Subscription } from 'rxjs';
 import { IngresoEgresoService } from '../../services/ingreso-egreso.service';
 import { Usuario } from '../../models/usuario.model';
-import { AppState } from '../../app.reducer';
-import * as actions from '../ingreso-egreso.actions'
+import { AppState } from '../../store/app.reducer';
+import * as actions from '../../store/actions/ingreso-egreso.actions'
 
 @Component({
   selector: 'app-home',

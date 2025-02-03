@@ -1,6 +1,6 @@
 import { ActionReducerMap } from '@ngrx/store';
-import * as ui from './shared/ui.reducer';
-import * as auth from './auth/auth.reducer';
+import * as ui from './reducers/ui.reducer';
+import * as auth from './reducers/auth.reducer';
 
 // Aquí programamos el Reducer global de nuestra aplicación.
 export interface AppState {
