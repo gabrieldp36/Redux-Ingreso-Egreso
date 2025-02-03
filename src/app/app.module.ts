@@ -16,7 +16,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 // Cambiar el Locale de la app.
-import { registerLocaleData } from '@angular/common';
+import { HashLocationStrategy, LocationStrategy, registerLocaleData } from '@angular/common';
 import localesAR from '@angular/common/locales/es-AR';
 registerLocaleData(localesAR);
 
@@ -53,6 +53,7 @@ import { environment } from '../environments/environment';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     { provide: LOCALE_ID, useValue: 'es-AR' },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   
   bootstrap: [AppComponent]

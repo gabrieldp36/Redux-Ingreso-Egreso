@@ -1,27 +1,30 @@
-# IngresosEgresosApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.2.
 
-## Development server
+# Ingresos Egresos App.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Esta aplicación fue desarrollada con la finalidad de poner en práctica los conocimientos adquiridos en la certificación que he realizado sobre el patrón Redux en Angular, utilizando la librería NgRx. Mediante la misma, podemos registrarnos cómo usuario, loguearnos y registrar nuestro ingresos y egresos mensuales. El dashboard nos muestra un resumen de los ingresos y egresos registrados, su diferencia y una gráfica que nos detalla la proporción de los mismos.
 
-## Code scaffolding
+Para el desarrollo de la aplicación se han utilizado tecnologías tales cómo: @ngrx/store, @ngrx/store-devtools, ng2-charts, sweetalert2, bootstrap, entre otras.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pueden visitar la App haciendo click en el siguiente link: ingresos-egresos-redux.netlify.app
 
-## Build
+### Notas:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Este proyecto fue generado con [Angular CLI] versión 18.0.0.
 
-## Running unit tests
+Recuerden configurar Firebase (ver enviroments) y reconstruir los módulos de Node:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+npm install
+```
 
-## Running end-to-end tests
+Y luego, para probar la app en desarrollo, ejecuten el siguiente comando:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+ng serve -o
+```
 
-## Further help
+Para construir el build, recuerden:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```
+ng build
